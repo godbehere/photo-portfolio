@@ -5,9 +5,12 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 
 const slides = [
-  { src: '/images/hero1.jpg', alt: 'Wedding Ceremony' },
-  { src: '/images/hero2.jpg', alt: 'Mountain Landscape' },
-  { src: '/images/hero3.jpg', alt: 'Studio Portrait' },
+  { src: '/images/airplane.jpg', alt: 'Flight' },
+  { src: '/images/caterpillar.jpg', alt: 'Caterpillar' },
+  { src: '/images/grasshopper.jpg', alt: 'Grasshopper' },
+  { src: '/images/mushroom.jpg', alt: 'Mushroom' },
+  { src: '/images/peru-lake.jpg', alt: 'Lake' },
+  { src: '/images/sloth.jpg', alt: 'Sloth' },
 ];
 
 export default function HeroSlideshow() {
@@ -33,7 +36,7 @@ export default function HeroSlideshow() {
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <h1 className="text-white text-4xl md:text-6xl font-bold drop-shadow-lg">
-                  {slide.alt}
+                  {/* {slide.alt} */}
                 </h1>
               </div>
             </div>

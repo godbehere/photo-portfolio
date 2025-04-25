@@ -1,12 +1,26 @@
 // app/page.tsx
 // import Layout from '@/app/layout'
+import HeroSlideshow from "@/components/heroSlideshow"
 
 export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[70vh] bg-cover bg-center bg-[url('/hero.jpg')] flex items-center justify-center text-white text-5xl font-bold">
-        Capturing Life’s Beautiful Moments
+      <section className="relative h-[70vh] w-full overflow-hidden">
+      {/* Background Slideshow */}
+        <div className="absolute inset-0 z-0">
+          <HeroSlideshow />
+        </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
+
+        {/* Heading Content */}
+        <div className="relative z-20 flex items-center justify-center h-full text-center px-4">
+          <h1 className="text-white text-4xl md:text-6xl font-bold">
+            Capturing Life’s Beautiful Moments
+          </h1>
+        </div>
       </section>
 
       {/* Intro + CTAs */}
