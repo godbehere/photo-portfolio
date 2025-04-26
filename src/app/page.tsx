@@ -1,6 +1,13 @@
 // app/page.tsx
 // import Layout from '@/app/layout'
-import HeroSlideshow from "@/components/heroSlideshow"
+import HeroSlideshow from "@/components/HeroSlideshow"
+import { HeroOverlay } from "@/components/HeroOverlay"
+import IntroSection from "@/components/IntroSection"
+import PortfolioCategories from "@/components/PortfolioCategories"
+import BookingPreview from "@/components/BookingPreview"
+import FeaturedProducts from "@/components/FeaturedProducts"
+import Testimonials from "@/components/Testimonials"
+import Footer from "@/components/Footer"
 
 export default function HomePage() {
   return (
@@ -13,10 +20,10 @@ export default function HomePage() {
         </div>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <HeroOverlay />
 
         {/* Heading Content */}
-        <div className="relative z-20 flex items-center justify-center h-full text-center px-4">
+        <div className="relative z-20 flex items-center justify-center h-full text-center px-4 pointer-events-none">
           <h1 className="text-white text-4xl md:text-6xl font-bold">
             Capturing Life’s Beautiful Moments
           </h1>
@@ -24,17 +31,19 @@ export default function HomePage() {
       </section>
 
       {/* Intro + CTAs */}
-      <section className="container mx-auto px-4 py-12 text-center">
+      <IntroSection />
+      {/* <section className="container mx-auto px-4 py-12 text-center">
         <h2 className="text-2xl font-semibold mb-4">Hi, I&apos;m [Your Name]</h2>
         <p className="mb-6 text-gray-600">Portrait & event photographer — available for bookings & digital art sales.</p>
         <div className="space-x-4">
           <a href="/portfolio" className="inline-block px-6 py-3 bg-black text-white rounded-full">See My Work</a>
           <a href="/booking" className="inline-block px-6 py-3 border border-black rounded-full">Book a Session</a>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured Portfolio Categories */}
-      <section className="bg-gray-50 py-12">
+      <PortfolioCategories />
+      {/* <section className="bg-gray-50 py-12">
         <div className="container mx-auto px-4">
           <h3 className="text-xl font-semibold text-center mb-8">Featured Categories</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -43,10 +52,13 @@ export default function HomePage() {
             <div className="bg-white shadow rounded overflow-hidden p-4 text-center">Events</div>
           </div>
         </div>
-      </section>
+      </section> */}
 
+      {/* Booking Preview */}
+      <BookingPreview />
       {/* Featured Shop Products */}
-      <section className="py-12">
+      <FeaturedProducts />
+      {/* <section className="py-12">
         <div className="container mx-auto px-4">
           <h3 className="text-xl font-semibold text-center mb-8">Popular Prints & Downloads</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -55,15 +67,17 @@ export default function HomePage() {
             <div className="bg-white shadow rounded p-4">🌅 Landscape Series</div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials (Optional) */}
-      <section className="bg-gray-100 py-12">
+      <Testimonials />
+      {/* <section className="bg-gray-100 py-12">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-xl font-semibold mb-8">Client Testimonials</h3>
           <blockquote className="italic text-gray-600 max-w-xl mx-auto">&quot;Absolutely stunning work. Made our wedding unforgettable!&quot;</blockquote>
         </div>
-      </section>
+      </section> */}
+      <Footer />
     </>
   )
 }

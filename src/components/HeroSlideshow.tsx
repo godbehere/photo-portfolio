@@ -15,7 +15,7 @@ const slides = [
 
 export default function HeroSlideshow() {
   return (
-    <div className="w-full h-[80vh] relative">
+    <div className="w-full h-full">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
