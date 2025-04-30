@@ -1,34 +1,94 @@
 // src/app/admin/page.tsx
 import Link from "next/link";
+import { getAllAvailability } from "@/services/availabilityService";
+import { getAllSessionTypes } from "@/services/sessionTypes";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-export default function AdminPage() {
+export default async function AdminDashboardPage() {
+  const [availability, sessionTypes] = await Promise.all([
+    getAllAvailability(),
+    getAllSessionTypes(),
+  ]);
+
   return (
-    <main className="p-8 max-w-3xl mx-auto space-y-6">
+    <main className="max-w-5xl mx-auto p-6 space-y-10">
       <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-      <div className="space-y-4">
-        <div className="border rounded-lg p-4 hover:shadow transition">
-          <h2 className="text-xl font-semibold">📅 Manage Sessions</h2>
-          <p className="text-sm text-gray-600 mb-2">
-            Create, edit, and remove session availability.
-          </p>
-          <div className="flex gap-4">
-            <Link
-              href="/admin/sessions"
-              className="text-blue-600 underline hover:text-blue-800"
-            >
-              View Sessions
-            </Link>
-            <Link
-              href="/admin/sessions/new"
-              className="text-blue-600 underline hover:text-blue-800"
-            >
-              Create New Session
-            </Link>
-          </div>
-        </div>
 
-        {/* Add more sections later like bookings, shop items, testimonials */}
+      {/* Navigation */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Link href="/admin/availability">
+          <Card className="hover:shadow-lg transition">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold">Manage Availability</h2>
+              <p className="text-muted-foreground text-sm">Set available dates and time windows.</p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link href="/admin/session-types">
+          <Card className="hover:shadow-lg transition">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold">Manage Session Types</h2>
+              <p className="text-muted-foreground text-sm">Edit session lengths and pricing.</p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
+
+      {/* Availability Quick View */}
+      <section className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Current Availability</h2>
+          <Link href="/admin/availability/">
+            <Button size="sm">Add Availability</Button>
+          </Link>
+        </div>
+        {availability.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No availability windows set.</p>
+        ) : (
+          <ul className="space-y-2">
+            {availability.map((slot) => (
+              <li key={slot.id} className="flex items-center justify-between border rounded p-3 text-sm">
+                <span>{slot.date} — {slot.startTime.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} to {slot.endTime.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                <div className="space-x-2">
+                  <Link href={`/admin/availability/edit/${slot.id}`}>
+                    <Button size="sm" variant="outline">Edit</Button>
+                  </Link>
+                  {/* Optional: Delete button */}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Session Types Quick View */}
+      <section className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Session Types</h2>
+          <Link href="/admin/session-types/">
+            <Button size="sm">Add Session Type</Button>
+          </Link>
+        </div>
+        {sessionTypes.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No session types added.</p>
+        ) : (
+          <ul className="space-y-2">
+            {sessionTypes.map((type) => (
+              <li key={type.id} className="flex items-center justify-between border rounded p-3 text-sm">
+                <span>
+                  <strong>{type.name}</strong> — {type.durations.join(", ")} mins @ ${type.hourlyRate}/hr
+                </span>
+                <div className="space-x-2">
+                  <Link href={`/admin/session-types/edit/${type.id}`}>
+                    <Button size="sm" variant="outline">Edit</Button>
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </main>
   );
 }

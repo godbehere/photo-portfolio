@@ -110,7 +110,7 @@ export default function AdminSessionForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="bg-primary text-black px-6 py-2 rounded hover:bg-primary/80 disabled:opacity-50"
+        className="bg-primary text-white px-6 py-2 rounded hover:bg-primary/80 disabled:opacity-50"
       >
         {isSubmitting ? "Creating..." : "Create Session"}
       </button>

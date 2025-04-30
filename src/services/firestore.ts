@@ -4,7 +4,8 @@ import { collection,
     getDoc,
     getDocs,
     addDoc,
-    // setDoc,
+    setDoc,
+    deleteDoc,
     updateDoc,
     query,
     where,
@@ -73,6 +74,26 @@ export async function createSession(session: Omit<Session, "id">): Promise<void>
   } catch (error) {
     logFirestoreError("Creating new session", error);
   }
+}
+
+
+export async function deleteSession(id: string): Promise<void> {
+  const docRef = doc(db, "sessions", id);
+  await deleteDoc(docRef);
+}
+
+export async function getSessionById(id: string): Promise<Session | null> {
+  const docRef = doc(db, "sessions", id);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() } as Session;
+  }
+  return null;
+}
+
+export async function updateSession(id: string, session: Omit<Session, "id">): Promise<void> {
+  const docRef = doc(db, "sessions", id);
+  await setDoc(docRef, session);
 }
 
 export async function bookSession(booking: Omit<Booking, "id" | "createdAt">): Promise<boolean> {
