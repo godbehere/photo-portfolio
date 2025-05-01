@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getPortfolioImages, PortfolioImage } from "@/services/portfolio/portfolioService";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -50,7 +50,6 @@ export default function PortfolioGallery() {
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-4">Portfolio</h1>
-      <Suspense>
         <div className="mb-4">
           <label className="block mb-1 font-semibold">Category</label>
           <select
@@ -66,7 +65,6 @@ export default function PortfolioGallery() {
             ))}
           </select>
         </div>
-      </Suspense>
       <div className="mb-6">
         <label className="block mb-1 font-semibold">Tags</label>
         <div className="flex flex-wrap gap-2">
