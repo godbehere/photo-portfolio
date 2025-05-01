@@ -12,7 +12,7 @@ export default function IntroSection() {
             <a href="/portfolio" className="bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition">
               See My Work
             </a>
-            <a href="/booking" className="border border-black px-6 py-3 rounded-xl hover:bg-gray-800 transition">
+            <a href="/booking" className="border border-black px-6 py-3 rounded-xl hover:bg-gray-100 transition">
               Book a Session
             </a>
           </div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export default function PortfolioGallery() {
   const [images, setImages] = useState<PortfolioImage[]>([]);
@@ -14,15 +15,23 @@ export default function PortfolioGallery() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  const searchParams = useSearchParams();
+  // const defaultCategory = searchParams.get("category");
+
   useEffect(() => {
     const load = async () => {
       const all = await getPortfolioImages();
       setImages(all);
       setCategories([...new Set(all.map((img) => img.category))]);
       setTags([...new Set(all.flatMap((img) => img.tags || []))]);
+
+      const catParam = searchParams.get("category");
+      if (catParam) {
+        setSelectedCategory(catParam);
+      }
     };
     load();
-  }, []);
+  }, [searchParams]);
 
   const filtered = images.filter((img) => {
     const matchesCategory = selectedCategory ? img.category === selectedCategory : true;

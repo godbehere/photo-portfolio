@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import imageCompression from "browser-image-compression";
 import { uploadImage, createPortfolioImageDoc } from "@/services/portfolio/portfolioService";
@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { X } from "lucide-react";
 
 interface ImageWithMetadata {
   file: File;
@@ -26,6 +27,7 @@ interface ImageWithMetadata {
 export default function PortfolioBatchUploadInline() {
   const [images, setImages] = useState<ImageWithMetadata[]>([]);
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = async (files: FileList | null) => {
     if (!files) return;
@@ -48,7 +50,7 @@ export default function PortfolioBatchUploadInline() {
         tagInput: "",
       });
     }
-    setImages(imgArray);
+    setImages((prev) => [...prev, ...imgArray]);
   };
 
   const updateImage = (index: number, key: keyof ImageWithMetadata, value: any) => {
@@ -68,10 +70,27 @@ export default function PortfolioBatchUploadInline() {
     }
   };
 
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const isValid = images.every((img) => img.file && img.category.trim());
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    handleFiles(e.dataTransfer.files);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleClickSelectFiles = () => {
+    fileInputRef.current?.click();
+  };
+
   const handleSubmit = async () => {
-    if(!isValid) {
+    if (!isValid) {
       toast.error("Each image must have a category");
       return;
     }
@@ -101,16 +120,39 @@ export default function PortfolioBatchUploadInline() {
   return (
     <div className="space-y-4 max-w-4xl mx-auto p-4 bg-white shadow rounded">
       <h2 className="text-2xl font-bold">Batch Portfolio Upload</h2>
-      <Input
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => handleFiles(e.target.files)}
-      />
 
+      {/* Drag & Drop Zone */}
+      <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onClick={handleClickSelectFiles}
+        className="border-2 border-dashed border-gray-400 p-6 rounded-md text-center cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+      >
+        <p className="text-gray-600">Drag and drop images here, or click to select</p>
+        <Input
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          ref={fileInputRef}
+          onChange={(e) => handleFiles(e.target.files)}
+        />
+      </div>
+
+      {/* Image Metadata Forms */}
       {images.map((img, i) => (
-        <div key={i} className="border rounded p-4 space-y-2">
-          <div className="relative w-full max-w-md aspect-video">
+        <div key={i} className="border rounded p-4 space-y-2 relative">
+          {/* Remove Button */}
+          <button
+            type="button"
+            onClick={() => removeImage(i)}
+            className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200"
+            title="Remove image"
+          >
+            <X className="w-5 h-5 text-gray-500" />
+          </button>
+
+          <div className="relative w-full max-w-md aspect-video mx-auto">
             <Image src={img.previewUrl} alt="Preview" fill className="object-contain rounded" />
           </div>
 

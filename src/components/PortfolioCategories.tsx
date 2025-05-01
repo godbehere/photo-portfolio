@@ -15,12 +15,12 @@ type Category = {
     {
       title: "Portraits",
       image: "/portfolio/portraits.jpg",
-      href: "/portfolio#portraits",
+      href: "/portfolio?category=Portraits",
     },
     {
       title: "Landscapes",
       image: "/portfolio/landscapes.jpg",
-      href: "/portfolio#landscapes",
+      href: "/portfolio?category=Landscapes",
     },
   ];
   
