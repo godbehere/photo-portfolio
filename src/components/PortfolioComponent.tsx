@@ -89,47 +89,61 @@ export default function PortfolioGallery() {
       </div>
 
       <Dialog open={lightboxIndex !== null} onOpenChange={() => setLightboxIndex(null)}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden">
-          {lightboxIndex !== null && (
-            <div className="relative bg-black text-white">
-              <button
+        <DialogContent
+            className="w-full max-w-none h-[80vh] p-0 m-0 overflow-hidden"
+            style={{ maxWidth: "80vw" }}
+            >
+            {lightboxIndex !== null && (
+            <div className="relative bg-black text-white flex flex-col h-full">
+                <button
                 onClick={() => setLightboxIndex(null)}
                 className="absolute top-2 right-2 p-2 z-10"
-              >
+                >
                 <X size={24} />
-              </button>
-              <div className="flex items-center justify-between p-4">
+                </button>
+
+                <div className="flex items-center justify-between p-4 flex-1">
                 <button
-                  onClick={() =>
+                    onClick={() =>
                     setLightboxIndex((i) =>
-                      i !== null ? (i - 1 + filtered.length) % filtered.length : null
+                        i !== null ? (i - 1 + filtered.length) % filtered.length : null
                     )
-                  }
-                  className="p-2"
+                    }
+                    className="p-2"
                 >
-                  <ArrowLeft />
+                    <ArrowLeft />
                 </button>
-                <img
-                  src={filtered[lightboxIndex].url}
-                  alt=""
-                  className="max-h-[80vh] mx-auto"
-                />
+
+                <div className="relative w-full h-full max-h-[90vh] mx-auto">
+                    <Image
+                        src={filtered[lightboxIndex].url}
+                        alt={filtered[lightboxIndex].title || "Portfolio Image"}
+                        fill
+                        className="object-contain"
+                        sizes="100vw"
+                        priority
+                    />
+                </div>
+
                 <button
-                  onClick={() =>
+                    onClick={() =>
                     setLightboxIndex((i) => (i !== null ? (i + 1) % filtered.length : null))
-                  }
-                  className="p-2"
+                    }
+                    className="p-2"
                 >
-                  <ArrowRight />
+                    <ArrowRight />
                 </button>
-              </div>
-              <div className="text-center py-2 text-sm text-gray-300">
-                Category: {filtered[lightboxIndex].category} | Tags: {filtered[lightboxIndex].tags?.join(", ")}
-              </div>
+                </div>
+
+                <div className="text-center py-2 text-sm text-gray-300">
+                Category: {filtered[lightboxIndex].category} | Tags:{" "}
+                {filtered[lightboxIndex].tags?.join(", ")}
+                </div>
             </div>
-          )}
+            )}
         </DialogContent>
       </Dialog>
+
     </div>
   );
 }

@@ -34,6 +34,14 @@ export default async function AdminDashboardPage() {
             </CardContent>
           </Card>
         </Link>
+        <Link href="/admin/portfolio-upload">
+          <Card className="hover:shadow-lg transition">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold">Upload Images</h2>
+              <p className="text-muted-foreground text-sm">Add images to portfolio.</p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {/* Booking Quick View */}

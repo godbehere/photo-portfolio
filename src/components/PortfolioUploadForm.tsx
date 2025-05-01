@@ -6,7 +6,6 @@ import { createPortfolioImageDoc } from "@/services/portfolio/createPortfolioIma
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-// import { toast } from "react-hot-toast";
 import { toast } from "sonner";
 
 export default function PortfolioUploadForm() {
@@ -14,18 +13,9 @@ export default function PortfolioUploadForm() {
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-//   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
-//   const [categoryInput, setCategoryInput] = useState("");
   const [tagInput, setTagInput] = useState("");
-
-//   const addCategory = () => {
-//     if (categoryInput.trim()) {
-//       setCategories((prev) => [...prev, categoryInput.trim()]);
-//       setCategoryInput("");
-//     }
-//   };
   
   const addTag = () => {
     if (tagInput.trim()) {
@@ -58,6 +48,7 @@ export default function PortfolioUploadForm() {
       setFile(null);
       setCategory("");
       setTitle("");
+      setTags([]);
       setDescription("");
     } catch (err) {
       console.error(err);
