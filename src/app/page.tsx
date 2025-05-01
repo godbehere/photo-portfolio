@@ -5,8 +5,8 @@ import { HeroOverlay } from "@/components/HeroOverlay"
 import IntroSection from "@/components/IntroSection"
 import PortfolioCategories from "@/components/PortfolioCategories"
 import BookingPreview from "@/components/BookingPreview"
-import FeaturedProducts from "@/components/FeaturedProducts"
-import Testimonials from "@/components/Testimonials"
+// import FeaturedProducts from "@/components/FeaturedProducts"
+// import Testimonials from "@/components/Testimonials"
 import Footer from "@/components/Footer"
 
 export default function HomePage() {
