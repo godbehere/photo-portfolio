@@ -1,4 +1,3 @@
-// src/components/SessionTypeForm.tsx
 "use client";
 
 import { useState } from "react";

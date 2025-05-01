@@ -1,4 +1,3 @@
-// src/components/booking/ConfirmStep.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,14 +6,13 @@ import { getSessionTypeById, SessionType } from "@/services/sessionTypes";
 import { AvailabilityWindow } from "@/types/availability";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
-import { createBooking } from "@/services/bookingService"; // ⬅️ Add this
-import { toast } from "sonner";
 
 type Props = {
   data: {
     sessionTypeId: string;
     duration: number;
     availabilityWindowId: string;
+    startTime: string;
     name: string;
     email: string;
     notes?: string;
@@ -42,21 +40,10 @@ export default function ConfirmStep({ data, onBack, onSubmit, submitting }: Prop
 
   if (!availability || !sessionType) return <p>Loading summary...</p>;
 
-  const start = availability.startTime.toDate();
+  const start = new Date(data.startTime);
   const end = new Date(start.getTime() + data.duration * 60000); // Add duration in minutes
 
   const price = (data.duration / 60) * sessionType.hourlyRate;
-
-  const handleSubmit = async () => {
-    try {
-      await createBooking(data);
-      toast.success("Booking confirmed!");
-      onSubmit(); // Notify parent (e.g., to redirect or show a success message)
-    } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong while submitting the booking.");
-    }
-  };
 
   return (
     <div>
@@ -92,7 +79,7 @@ export default function ConfirmStep({ data, onBack, onSubmit, submitting }: Prop
         <Button variant="outline" onClick={onBack}>
           Back
         </Button>
-        <Button onClick={handleSubmit} disabled={submitting}>
+        <Button onClick={onSubmit} disabled={submitting}>
           {submitting ? "Submitting..." : "Confirm Booking"}
         </Button>
       </div>

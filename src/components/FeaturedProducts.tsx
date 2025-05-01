@@ -24,7 +24,7 @@ const products = [
 
 export default function FeaturedProducts() {
   return (
-    <section className="bg-gray-100 py-16 px-4">
+    <section className="bg-gray-100 py-16 px-4 dark:bg-gray-900 dark:text-white">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-6">Shop Featured Prints</h2>
         <p className="text-gray-600 mb-10">

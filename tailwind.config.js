@@ -5,6 +5,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}", // (Optional if you use pages too)
     "./components/**/*.{js,ts,jsx,tsx}", // Custom components
   ],
+  darkMode: 'media',
   theme: {
     extend: {},
   },

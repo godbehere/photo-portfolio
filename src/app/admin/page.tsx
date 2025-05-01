@@ -1,14 +1,15 @@
-// src/app/admin/page.tsx
 import Link from "next/link";
 import { getAllAvailability } from "@/services/availabilityService";
 import { getAllSessionTypes } from "@/services/sessionTypes";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { getAllBookings } from "@/services/bookingService";
 
 export default async function AdminDashboardPage() {
-  const [availability, sessionTypes] = await Promise.all([
+  const [availability, sessionTypes, bookings] = await Promise.all([
     getAllAvailability(),
     getAllSessionTypes(),
+    getAllBookings(),
   ]);
 
   return (
@@ -34,6 +35,33 @@ export default async function AdminDashboardPage() {
           </Card>
         </Link>
       </div>
+
+      {/* Booking Quick View */}
+      <section className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Current Bookings</h2>
+          {/* <Link href="/admin/availability/">
+            <Button size="sm">Add Availability</Button>
+          </Link> */}
+        </div>
+        {bookings.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No bookings currently.</p>
+        ) : (
+          <ul className="space-y-2">
+            {bookings.map((booking) => (
+              <li key={booking.id} className="flex items-center justify-between border rounded p-3 text-sm">
+                <span>{booking.name} — {booking.startTime.toDate().toLocaleDateString([], { hour: "2-digit", minute: "2-digit" })} Duration: {booking.duration}</span>
+                <div className="space-x-2">
+                  {/* <Link href={`/admin/availability/edit/${booking.id}`}>
+                    <Button size="sm" variant="outline">Edit</Button>
+                  </Link> */}
+                  {/* Optional: Delete button */}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       {/* Availability Quick View */}
       <section className="space-y-4">

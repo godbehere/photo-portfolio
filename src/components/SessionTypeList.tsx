@@ -1,4 +1,3 @@
-// src/components/SessionTypeList.tsx
 "use client";
 
 import { useEffect, useState } from "react";

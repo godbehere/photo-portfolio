@@ -20,7 +20,7 @@ const sessionTypes = [
 
 export default function BookingPreview() {
   return (
-    <section className="bg-white py-16 px-4">
+    <section className="bg-white py-16 px-4 dark:bg-gray-900 dark:text-white">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-4">Let’s Work Together</h2>
         <p className="text-gray-600 mb-10">

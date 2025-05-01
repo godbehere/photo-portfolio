@@ -7,6 +7,9 @@ import AvailabilityStep from "./AvailabilityStep";
 import ContactInfoStep from "./ContactInfoStep";
 import ConfirmStep from "./ConfirmStep";
 import { CheckCircle } from "lucide-react";
+import { createBooking } from "@/services/bookingService";
+import { toast } from "sonner";
+import StartTimeStep from "./StartTimeStep";
 
 export default function BookingForm() {
   const [step, setStep] = useState(0);
@@ -26,13 +29,19 @@ export default function BookingForm() {
   const goNext = () => setStep((s) => s + 1);
   const goBack = () => setStep((s) => s - 1);
 
+
   const handleSubmit = async () => {
     setSubmitting(true);
-    // The actual creation happens in ConfirmStep; this just moves to next step after success.
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await createBooking(formData);
+      toast.success("Booking confirmed!");
       goNext(); // move to thank you page
-    }, 500); // fake delay for smoother UX; optional
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -40,8 +49,9 @@ export default function BookingForm() {
       {step === 0 && <SessionTypeStep data={formData} setData={setFormData} onNext={goNext} />}
       {step === 1 && <DurationStep data={formData} setData={setFormData} onNext={goNext} onBack={goBack} />}
       {step === 2 && <AvailabilityStep data={formData} setData={setFormData} onNext={goNext} onBack={goBack} />}
-      {step === 3 && <ContactInfoStep data={formData} setData={setFormData} onNext={goNext} onBack={goBack} />}
-      {step === 4 && (
+      {step === 3 && <StartTimeStep data={formData} setData={setFormData} onNext={goNext} onBack={goBack} />}
+      {step === 4 && <ContactInfoStep data={formData} setData={setFormData} onNext={goNext} onBack={goBack} />}
+      {step === 5 && (
         <ConfirmStep
           data={formData}
           onBack={goBack}
@@ -49,7 +59,7 @@ export default function BookingForm() {
           submitting={submitting}
         />
       )}
-      {step === 5 && (
+      {step === 6 && (
         <div className="text-center py-12">
           <CheckCircle className="mx-auto text-green-500" size={48} />
           <h2 className="text-2xl font-semibold mt-4">Booking Confirmed!</h2>

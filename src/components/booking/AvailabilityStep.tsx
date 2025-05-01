@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/components/booking/AvailabilityStep.tsx
 "use client";
 
 import { useEffect, useState } from "react";
