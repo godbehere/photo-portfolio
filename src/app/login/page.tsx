@@ -28,7 +28,7 @@ export default function LoginPage() {
       });
 
       router.push('/admin');
-    } catch (err) {
+    } catch {
       setError('Invalid email or password.');
     }
   };
