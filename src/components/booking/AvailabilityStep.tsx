@@ -7,6 +7,7 @@ import { AvailabilityWindow } from "@/types/availability";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { logInfo } from "@/utils/logger";
 
 type Props = {
   data: { duration: number; availabilityWindowId?: string };
@@ -34,6 +35,7 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
   }, [data.duration]);
 
   const handleSelect = (id: string) => {
+    logInfo("Select Availability", "Test Message");
     setData((prev: any) => ({ ...prev, availabilityWindowId: id }));
   };
 

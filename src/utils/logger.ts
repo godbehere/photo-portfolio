@@ -11,5 +11,9 @@ export function logFirestoreError(action: string, error: unknown) {
     } else {
       console.error(`[Firestore Error] ${action}:`, error);
     }
-  }
+}
+
+export function logInfo(action: string, message: string) {
+  console.log(`Info Log for:${action} Message: ${message}`);
+}
   

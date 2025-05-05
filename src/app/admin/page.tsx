@@ -3,11 +3,13 @@ import { getAllAvailability } from "@/services/availabilityService";
 import { getAllSessionTypes } from "@/services/sessionTypes";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getAllBookings } from "@/services/bookingService";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAuth } from "firebase-admin/auth";
+import { Booking } from "@/services/bookingService";
+import { getFirestore } from "firebase-admin/firestore"
+import { logFirestoreError } from "@/utils/logger";
 
 if (!getApps().length) {
   initializeApp({
@@ -17,6 +19,20 @@ if (!getApps().length) {
       privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
     }),
   });
+}
+
+async function getAllBookings(): Promise<Booking[]> {
+  try {
+    const db = getFirestore();
+    const snapshot = await db.collection("bookings").get();
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...(doc.data() as Omit<Booking, "id">),
+    }));
+  } catch (error) {
+    logFirestoreError("Fetching all bookings", error);
+    return [];
+  }
 }
 
 export default async function AdminDashboardPage() {
