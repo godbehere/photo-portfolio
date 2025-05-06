@@ -6,7 +6,7 @@ import {
   createAvailability,
   deleteAvailability,
 } from "@/services/availabilityService";
-import { AvailabilityWindow } from "@/shares/types";
+import { AvailabilityWindow } from "@/shared/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
