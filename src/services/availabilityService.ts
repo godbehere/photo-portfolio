@@ -8,7 +8,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import { AvailabilityWindow } from "@/types/availability";
+import { AvailabilityWindow } from "@/shared/types";
 
 const availabilityRef = collection(db, "availability");
 

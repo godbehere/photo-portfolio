@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllAvailability } from "@/services/availabilityService";
-import { AvailabilityWindow } from "@/types/availability";
+import { AvailabilityWindow } from "@/shared/types";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,9 +23,9 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
   useEffect(() => {
     const load = async () => {
       const allWindows = await getAllAvailability();
-      const filtered = allWindows.filter(w => {
+      const filtered = allWindows.filter(window => {
         const windowDuration =
-          (w.endTime.toDate().getTime() - w.startTime.toDate().getTime()) / 1000 / 60; // in minutes
+          (window.endTime.toDate().getTime() - window.startTime.toDate().getTime()) / 1000 / 60; // in minutes
         return windowDuration >= data.duration;
       });
       setWindows(filtered);

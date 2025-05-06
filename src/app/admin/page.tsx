@@ -7,7 +7,7 @@ import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAuth } from "firebase-admin/auth";
-import { Booking } from "@/services/bookingService";
+import { Booking } from "@/shared/types";
 import { getFirestore } from "firebase-admin/firestore"
 import { logFirestoreError } from "@/utils/logger";
 
@@ -95,7 +95,7 @@ export default async function AdminDashboardPage() {
             <ul className="space-y-2">
               {bookings.map((booking) => (
                 <li key={booking.id} className="flex items-center justify-between border rounded p-3 text-sm">
-                  <span>{booking.name} — {booking.startTime.toDate().toLocaleDateString([], { hour: "2-digit", minute: "2-digit" })} Duration: {booking.duration}</span>
+                  <span>{booking.name} — {('toDate' in booking.startTime ? booking.startTime.toDate() : booking.startTime).toLocaleDateString([], { hour: "2-digit", minute: "2-digit" })} Duration: {booking.duration}</span>
                   <div className="space-x-2">
                     {/* <Link href={`/admin/availability/edit/${booking.id}`}>
                       <Button size="sm" variant="outline">Edit</Button>
@@ -122,7 +122,7 @@ export default async function AdminDashboardPage() {
             <ul className="space-y-2">
               {availability.map((slot) => (
                 <li key={slot.id} className="flex items-center justify-between border rounded p-3 text-sm">
-                  <span>{slot.date} — {slot.startTime.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} to {slot.endTime.toDate().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
+                  <span>{slot.date} — {('toDate' in slot.startTime ? slot.startTime.toDate() : slot.startTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} to {('toDate' in slot.endTime ? slot.endTime.toDate() : slot.endTime).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span>
                   <div className="space-x-2">
                     <Link href={`/admin/availability/edit/${slot.id}`}>
                       <Button size="sm" variant="outline">Edit</Button>

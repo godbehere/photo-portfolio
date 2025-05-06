@@ -1,23 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { Timestamp } from 'firebase-admin/firestore';
-
-type CreateBookingData = {
-    sessionTypeId: string;
-    availabilityWindowId: string;
-    startTime: string;
-    duration: number;
-    name: string;
-    email: string;
-    notes?: string;
-}
-
-type AvailabilityWindow = {
-    id?: string;
-    date: string; // ISO date string, e.g., "2025-05-01"
-    startTime: Timestamp; // e.g., "09:00"
-    endTime: Timestamp;   // e.g., "12:00"
-  };
+import { CreateBookingData, AvailabilityWindow } from '@/shared/types'
 
 
 export const getAllBookings = functions.https.onCall(async () => {

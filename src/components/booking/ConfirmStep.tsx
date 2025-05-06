@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { getAvailabilityById } from "@/services/availabilityService";
 import { getSessionTypeById, SessionType } from "@/services/sessionTypes";
-import { AvailabilityWindow } from "@/types/availability";
+import { AvailabilityWindow } from "@/shared/types";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 

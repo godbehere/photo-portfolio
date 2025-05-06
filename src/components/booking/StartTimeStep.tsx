@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getAvailabilityById } from "@/services/availabilityService";
 import { Button } from "@/components/ui/button";
 import { format, addMinutes, isBefore } from "date-fns";
-import { AvailabilityWindow } from "@/types/availability";
+import { AvailabilityWindow } from "@/shared/types";
 import { cn } from "@/lib/utils";
 
 type Props = {
