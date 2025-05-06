@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllSessionTypes, deleteSessionType, SessionType } from "@/services/sessionTypes";
+import { getAllSessionTypes, deleteSessionType } from "@/services/sessionTypes";
 import SessionTypeForm from "./SessionTypeForm";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { SessionType } from "@/shared/types";
 
 export default function SessionTypeList() {
   const [sessionTypes, setSessionTypes] = useState<SessionType[]>([]);

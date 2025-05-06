@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { SessionType, createSessionType, updateSessionType } from "@/services/sessionTypes";
+import { createSessionType, updateSessionType } from "@/services/sessionTypes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { SessionType } from "@/shared/types";
 
 interface Props {
   onSuccess: () => void;
