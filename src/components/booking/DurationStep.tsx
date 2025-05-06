@@ -2,9 +2,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getSessionTypeById, SessionType } from "@/services/sessionTypes";
+import { getSessionTypeById } from "@/services/sessionTypes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { SessionType } from "@/shared/types";
 
 type Props = {
   data: { sessionTypeId: string; duration?: number };
