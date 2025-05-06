@@ -2,7 +2,9 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { Timestamp } from 'firebase-admin/firestore';
 import { CreateBookingData, AvailabilityWindow } from '@/shared/types'
+import sgMail form "@sendgrid/mail";
 
+sgMail.setApiKey(functions.config().sendgrid.api_key);
 
 export const getAllBookings = functions.https.onCall(async () => {
   const bookingRef = admin.firestore().collection('bookings').doc();
@@ -31,7 +33,7 @@ export const createBooking = functions.https.onCall<CreateBookingData>(async (re
         endTime: Timestamp.fromDate(bookingEndDate),
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-
+		
     // Trim or split availability
     if (
       bookingStartDate.getTime() === start.getTime() &&
@@ -62,6 +64,17 @@ export const createBooking = functions.https.onCall<CreateBookingData>(async (re
         }),
       ]);
     }
+
+    const msg = {
+      to: req.data.email,
+      from: 'godbehere@gmail.com',
+      subject: 'Booking Confirmation',
+      text: `Thanks ${req.data.name}, your booking has been received!`,
+      html: `<p>Thanks <strong>${req.data.name}</strong>, your booking has been received!</p>`,
+    };
+
+    await sgMail.send(msg);
+
     return { success: true };
   } catch (err) {
     functions.logger.error("Booking create failed", err);
