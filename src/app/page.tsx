@@ -1,5 +1,3 @@
-// app/page.tsx
-// import Layout from '@/app/layout'
 import HeroSlideshow from "@/components/HeroSlideshow"
 import { HeroOverlay } from "@/components/HeroOverlay"
 import IntroSection from "@/components/IntroSection"
@@ -7,7 +5,6 @@ import PortfolioCategories from "@/components/PortfolioCategories"
 import BookingPreview from "@/components/BookingPreview"
 // import FeaturedProducts from "@/components/FeaturedProducts"
 // import Testimonials from "@/components/Testimonials"
-import Footer from "@/components/Footer"
 
 export default function HomePage() {
   return (
@@ -43,8 +40,6 @@ export default function HomePage() {
 
       {/* Testimonials (Optional) */}
       {/* <Testimonials /> */}
-
-      <Footer />
     </>
   )
 }

@@ -3,7 +3,7 @@ export default function IntroSection() {
       <section className="bg-white text-center py-16 px-4 dark:bg-gray-900 dark:text-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-            Hello, I’m [Your Name]
+            Hello, I’m Grant Godbehere
           </h2>
           <p className="text-lg text-gray-600 mb-6">
             I capture candid moments, emotions, and the beauty of everyday life. Whether it’s a wedding, portrait, or personal artwork — I tell stories through imagery.

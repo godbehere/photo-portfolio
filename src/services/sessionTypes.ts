@@ -1,4 +1,5 @@
 import { db } from "@/lib/firebase";
+import { SessionType } from "@/shared/types";
 import {
   collection,
   getDocs,
@@ -7,17 +8,7 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-//   Timestamp,
 } from "firebase/firestore";
-
-export type SessionType = {
-  id?: string;
-  name: string;
-  description?: string;
-  durations: number[];
-  hourlyRate: number;
-  isActive?: boolean;
-};
 
 const sessionTypesRef = collection(db, "sessionTypes");
 

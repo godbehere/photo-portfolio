@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Step 1: Multi-image batch upload with inline metadata entry
-// File: components/admin/PortfolioBatchUploadInline.tsx
 
 "use client";
 

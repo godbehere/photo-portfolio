@@ -16,7 +16,6 @@ export default function PortfolioGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const searchParams = useSearchParams();
-  // const defaultCategory = searchParams.get("category");
 
   useEffect(() => {
     const load = async () => {

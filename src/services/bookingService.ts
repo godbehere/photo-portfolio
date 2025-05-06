@@ -5,7 +5,7 @@ import {
 } from "firebase/firestore";
 import { logFirestoreError } from "@/utils/logger";
 import { getFunctions, httpsCallable } from "firebase/functions"
-import { Booking } from "@/types";
+import { Booking } from "@/shared/types";
 
 const bookingsRef = collection(db, "bookings");
 
