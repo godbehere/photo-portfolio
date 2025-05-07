@@ -11,6 +11,7 @@ const bookingsRef = collection(db, "bookings");
 
 const functions = getFunctions();
 const createBookingCloud = httpsCallable(functions, 'createBooking');
+const sendEmail = httpsCallable(functions, 'sendEmail');
 
 export async function createBooking(data: {
   sessionTypeId: string;
@@ -21,8 +22,14 @@ export async function createBooking(data: {
   email: string;
   notes?: string;
 }) {
-  console.log("About to create booking");
-  await createBookingCloud(data);
+  try {
+    await createBookingCloud(data);
+  } catch (error) {
+    logFirestoreError("Creating booking", error);
+  } finally {
+    console.log("Sending email");
+    await sendEmail(data);
+  }
 }
 
 export async function getAllBookings(): Promise<Booking[]> {

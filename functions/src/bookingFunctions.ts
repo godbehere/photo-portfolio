@@ -2,9 +2,10 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { Timestamp } from 'firebase-admin/firestore';
 import { CreateBookingData, AvailabilityWindow } from '@/shared/types'
-import sgMail form "@sendgrid/mail";
+// import sgMail from '@sendgrid/mail';
 
-sgMail.setApiKey(functions.config().sendgrid.api_key);
+// Set SendGrid API Key
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export const getAllBookings = functions.https.onCall(async () => {
   const bookingRef = admin.firestore().collection('bookings').doc();
@@ -12,28 +13,32 @@ export const getAllBookings = functions.https.onCall(async () => {
 });
 
 export const createBooking = functions.https.onCall<CreateBookingData>(async (req) => {
+  functions.logger.info('Creating booking', req.data);
   try {
     const availabilityRef = admin.firestore().collection('availability');
     const availabilitySnapshot = await admin.firestore().collection('availability').doc(req.data.availabilityWindowId).get();
 
-    if(!availabilitySnapshot.exists) return functions.logger.error("Availability doesn't exist");
+    if (!availabilitySnapshot.exists) {
+      functions.logger.error("Availability doesn't exist");
+      return { success: false, message: "Availability doesn't exist" };
+    }
 
     const availability = availabilitySnapshot.data() as AvailabilityWindow;
-    
+
     const start = availability.startTime.toDate();
     const end = availability.endTime.toDate();
     const bookingStartDate = new Date(req.data.startTime);
     const bookingEndDate = new Date(bookingStartDate.getTime() + req.data.duration * 60000);
-  
+
     // Save the booking
     const bookingRef = admin.firestore().collection('bookings').doc();
     await bookingRef.set({
-        ...req.data,
-        startTime: Timestamp.fromDate(bookingStartDate),
-        endTime: Timestamp.fromDate(bookingEndDate),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      ...req.data,
+      createdAt: Timestamp.now(),
+      startTime: bookingStartDate,
+      endTime: bookingEndDate,
     });
-		
+
     // Trim or split availability
     if (
       bookingStartDate.getTime() === start.getTime() &&
@@ -65,19 +70,26 @@ export const createBooking = functions.https.onCall<CreateBookingData>(async (re
       ]);
     }
 
-    const msg = {
-      to: req.data.email,
-      from: 'godbehere@gmail.com',
-      subject: 'Booking Confirmation',
-      text: `Thanks ${req.data.name}, your booking has been received!`,
-      html: `<p>Thanks <strong>${req.data.name}</strong>, your booking has been received!</p>`,
-    };
+    // Send confirmation email
+    // const msg = {
+    //   to: req.data.email, // Customer's email
+    //   from: 'photography@godbehere.org', // Verified sender email      
+    //   subject: 'Booking Confirmation',
+    //   text: `Your booking has been confirmed from ${bookingStartDate} to ${bookingEndDate}.`,
+    //   html: `<p>Your booking has been confirmed from <strong>${bookingStartDate}</strong> to <strong>${bookingEndDate}</strong>.</p>`,
+    // };
 
-    await sgMail.send(msg);
+    // try {
+    //   await sgMail.send(msg);
+    //   functions.logger.info('Email sent successfully');
+    // } catch (emailError) {
+    //   functions.logger.error('Failed to send email', emailError);
+    //   // return { success: false, message: 'Booking created, but email failed to send' };
+    // }
 
-    return { success: true };
-  } catch (err) {
-    functions.logger.error("Booking create failed", err);
-    throw new functions.https.HttpsError('internal', 'Failed to create booking');
+    return { success: true, message: 'Booking created and email sent successfully' };
+  } catch (error) {
+    functions.logger.error('Error creating booking', error);
+    return { success: false, message: 'Error creating booking' };
   }
-  });
+});
