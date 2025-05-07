@@ -5,6 +5,8 @@ import { CreateBookingData } from '@/shared/types';
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export const sendEmail = functions.https.onCall<CreateBookingData>(async (req) => {
+    const startTime = new Date(req.data.startTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    const date = new Date(req.data.startTime).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 
     await sgMail.send({
         to: req.data.email,
@@ -12,8 +14,8 @@ export const sendEmail = functions.https.onCall<CreateBookingData>(async (req) =
         templateId: 'd-d433e64ade5440649d84f6a60589d7da',
         dynamicTemplateData: {
             name: req.data.name,
-            startTime: req.data.startTime,
-            date: req.data.startTime.split('T')[0],
+            startTime: startTime,
+            date: date,
             duration: req.data.duration,
         },
     });
@@ -22,8 +24,8 @@ export const sendEmail = functions.https.onCall<CreateBookingData>(async (req) =
         to: 'godbehere@gmail.com',
         from: 'photography@godbehere.org',
         subject: 'New Booking',
-        text: `New booking from ${req.data.name} (${req.data.email}) for ${req.data.startTime} for ${req.data.duration} minutes.`,
-        html: `<strong>New booking from ${req.data.name} (${req.data.email}) for ${req.data.startTime} for ${req.data.duration} minutes.</strong>`,
+        text: `New booking from ${req.data.name} (${req.data.email}) on ${date} at ${startTime} for ${req.data.duration} minutes.\nNotes: ${req.data.notes}`,
+        html: `<p><strong>New booking from ${req.data.name} (${req.data.email}) on ${date} at ${startTime} for ${req.data.duration} minutes.</strong></p><p>Notes: ${req.data.notes}</p>`,
     });
 
     return { success: true, message: 'Email sent successfully' };

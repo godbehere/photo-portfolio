@@ -4,6 +4,8 @@ import { createBooking } from './bookingFunctions';
 
 admin.initializeApp();
 
+process.env.TZ = 'America/Toronto';
+
 module.exports = {
     sendEmail,
     createBooking
