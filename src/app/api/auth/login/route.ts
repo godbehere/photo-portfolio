@@ -1,23 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAuth } from 'firebase-admin/auth';
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
-
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-    }),
-  });
-}
+import { getAuth } from '@/lib/firebaseAdmin';
 
 export async function POST(req: NextRequest) {
   const { idToken } = await req.json();
 
   try {
     // Verify the token and check for admin claim
-    const decodedIdToken = await getAuth().verifyIdToken(idToken);
+    const decodedIdToken = await getAuth.verifyIdToken(idToken);
 
     if (!decodedIdToken.admin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
@@ -25,7 +14,7 @@ export async function POST(req: NextRequest) {
 
     // Create session cookie
     const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
-    const sessionCookie = await getAuth().createSessionCookie(idToken, { expiresIn });
+    const sessionCookie = await getAuth.createSessionCookie(idToken, { expiresIn });
 
     const response = NextResponse.json({ success: true });
     response.cookies.set('__session', sessionCookie, {

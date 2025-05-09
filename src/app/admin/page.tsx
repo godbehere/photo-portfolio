@@ -3,27 +3,16 @@ import { getAllAvailability } from "@/services/availabilityService";
 import { getAllSessionTypes } from "@/services/sessionTypes";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { getAuth } from "firebase-admin/auth";
+import { getAuth } from "@/lib/firebaseAdmin";
 import { Booking } from "@/shared/types";
-import { getFirestore } from "firebase-admin/firestore"
+import { getFirestore } from "@/lib/firebaseAdmin";
 import { logFirestoreError } from "@/utils/logger";
-
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    }),
-  });
-}
 
 async function getAllBookings(): Promise<Booking[]> {
   try {
-    const db = getFirestore();
+    const db = getFirestore;
     const snapshot = await db.collection("bookings").get();
     return snapshot.docs.map((doc) => ({
       id: doc.id,
@@ -46,7 +35,7 @@ export default async function AdminDashboardPage() {
   ]);
 
   try {
-    const decoded = await getAuth().verifySessionCookie(sessionCookie, true);
+    const decoded = await getAuth.verifySessionCookie(sessionCookie, true);
     if (!decoded.admin) return redirect('/unauthorized');
 
     return (

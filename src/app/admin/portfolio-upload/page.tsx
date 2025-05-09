@@ -1,5 +1,5 @@
 import PortfolioBatchUploadInline from "@/components/PortfolioBatchUploadInline";
-import { getAuth } from "firebase-admin/auth";
+import { getAuth } from "@/lib/firebaseAdmin";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -9,7 +9,7 @@ export default async function SessionsPage() {
   const sessionCookie = (await cookies()).get('__session')?.value;
   if (!sessionCookie) return redirect('/login');
 
-  const decoded = await getAuth().verifySessionCookie(sessionCookie, true);
+  const decoded = await getAuth.verifySessionCookie(sessionCookie, true);
   if (!decoded.admin) return redirect('/unauthorized');
   
   return (
