@@ -49,24 +49,27 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
         <p>No available windows match the selected duration.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {windows.map((window) => (
-            <button
-              key={window.id}
-              onClick={() => handleSelect(window.id!)}
-              className={cn(
-                "p-4 rounded-lg border hover:border-black transition text-left",
-                data.availabilityWindowId === window.id ? "bg-black text-white" : "bg-white"
-              )}
-            >
-              <p className="font-medium">
-                {format(window.startTime.toDate(), "EEEE, MMM d")}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {format(window.startTime.toDate(), "h:mm a")} -{" "}
-                {format(window.endTime.toDate(), "h:mm a")}
-              </p>
-            </button>
-          ))}
+          {windows
+            .filter((window) => window.startTime.toDate().getTime() > Date.now())
+            .sort((a, b) => a.startTime.toDate().getTime() - b.startTime.toDate().getTime())
+            .map((window) => (
+              <button
+                key={window.id}
+                onClick={() => handleSelect(window.id!)}
+                className={cn(
+                  "p-4 rounded-lg border hover:border-black transition text-left",
+                  data.availabilityWindowId === window.id ? "bg-black text-white" : "bg-white"
+                )}
+              >
+                <p className="font-medium">
+                  {format(window.startTime.toDate(), "EEEE, MMM d")}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {format(window.startTime.toDate(), "h:mm a")} -{" "}
+                  {format(window.endTime.toDate(), "h:mm a")}
+                </p>
+              </button>
+            ))}
         </div>
       )}
 
