@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { sendEmail } from "./sendEmail";
+import { sendConfirmationEmail, sendContactUsEmail, sendOutOfTownRequestEmail } from "./sendEmail";
 import { createBooking } from './bookingFunctions';
 
 admin.initializeApp();
@@ -7,6 +7,8 @@ admin.initializeApp();
 process.env.TZ = 'America/Toronto';
 
 module.exports = {
-    sendEmail,
-    createBooking
+    sendConfirmationEmail,
+    createBooking,
+    sendContactUsEmail,
+    sendOutOfTownRequestEmail
 }
