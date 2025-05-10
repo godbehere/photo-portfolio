@@ -7,6 +7,20 @@ export type AvailabilityWindow = {
     endTime: Timestamp;
 }
 
+export type ContactFormData = {
+    name: string;
+    email: string;
+    message: string;
+}
+
+export type OutOfTownRequestData = {
+    name: string;
+    email: string;
+    details: string;
+    location: string;
+    date: string;
+}
+
 export type CreateBookingData = {
     sessionTypeId: string;
     availabilityWindowId: string;
@@ -26,7 +40,7 @@ export type SessionType = {
     isActive?: boolean;
 };
 
-    export type Booking = {
+export type Booking = {
     id?: string;
     availabilityWindowId: string;
     createdAt: Timestamp;

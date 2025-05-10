@@ -11,7 +11,7 @@ const bookingsRef = collection(db, "bookings");
 
 const functions = getFunctions();
 const createBookingCloud = httpsCallable(functions, 'createBooking');
-const sendEmail = httpsCallable(functions, 'sendEmail');
+const sendEmail = httpsCallable(functions, 'sendConfirmationEmail');
 
 export async function createBooking(data: {
   sessionTypeId: string;

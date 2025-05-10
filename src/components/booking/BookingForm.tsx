@@ -62,7 +62,7 @@ export default function BookingForm() {
       {step === 6 && (
         <div className="text-center py-12">
           <CheckCircle className="mx-auto text-green-500" size={48} />
-          <h2 className="text-2xl font-semibold mt-4">Booking Confirmed!</h2>
+          <h2 className="text-2xl font-semibold mt-4">Booking Requested!</h2>
           <p className="mt-2 text-muted-foreground">We&apos;ve sent a confirmation to your email.</p>
         </div>
       )}

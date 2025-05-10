@@ -48,7 +48,7 @@ export default function ConfirmStep({ data, onBack, onSubmit, submitting }: Prop
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Confirm Your Booking</h2>
+      <h2 className="text-2xl font-bold mb-4">Confirm Your Request</h2>
 
       <div className="space-y-2 max-w-md mb-6">
         <div>
