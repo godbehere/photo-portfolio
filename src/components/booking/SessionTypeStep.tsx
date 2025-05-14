@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllSessionTypes } from "@/services/sessionTypes";
+import { getAllSessionTypes, getSessionTypeById } from "@/services/sessionTypes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SessionType } from "@/shared/types";
@@ -10,7 +10,7 @@ import { SessionType } from "@/shared/types";
 type Props = {
   data: { sessionTypeId: string };
   setData: (data: any) => void;
-  onNext: () => void;
+  onNext: (session: SessionType) => void;
 };
 
 export default function SessionTypeStep({ data, setData, onNext }: Props) {
@@ -28,6 +28,11 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
     };
     load();
   }, []);
+
+  const handleNext = async () => {
+    const session = await getSessionTypeById(data.sessionTypeId);
+    onNext(session);
+  }
 
   const handleSelect = (id: string | undefined) => {
     setData((prev: any) => ({ ...prev, sessionTypeId: id }));
@@ -51,7 +56,8 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
               )}
             >
               <h3 className="text-lg font-semibold">{type.name}</h3>
-              <p className="text-sm text-gray-600">Starting @ ${type.hourlyRate * type.durations[0] / 60}</p>
+              <p className="text-sm text-gray-600">{type.durations.length === 1 ? `Price: $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}` : `Starting @ $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}`}</p>
+              {type.durations.length === 1 ? <p className="text-sm text-gray-600">Length: {type.durations[0] / 60} hours</p> : null}
               <p className="text-sm text-gray-600">{type.description}</p>
             </button>
           ))}
@@ -60,7 +66,7 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
 
       <div className="mt-6 text-right">
         <Button
-          onClick={onNext}
+          onClick={handleNext}
           disabled={!data.sessionTypeId}
         >
           Next

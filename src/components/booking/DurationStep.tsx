@@ -49,7 +49,7 @@ export default function DurationStep({ data, setData, onNext, onBack }: Props) {
                 data.duration === duration ? "bg-black text-white" : "bg-white"
               )}
             >
-              <h3 className="text-lg font-semibold">{duration} minutes</h3>
+              <h3 className="text-lg font-semibold">{duration > 60 ? `${duration / 60} hours`:`${duration} minutes`}</h3>
               <p>${sessionType.hourlyRate * duration / 60}</p>
             </button>
           ))}
