@@ -18,13 +18,19 @@ export default function AboutPage() {
       {/* Text Content */}
       <div className="space-y-6 text-lg text-muted-foreground">
         <p>
-          Hi, I’m Grant Godbehere, a Toronto-based photographer with a passion for capturing people, moments, and emotion through the lens. My work focuses on lifestyle, portrait, and event photography—telling stories through honest, vibrant imagery.
+          Hi, I’m Grant Godbehere, the photographer behind Lost Light Photography, based in Toronto.
         </p>
         <p>
-          Whether I’m photographing a quiet moment at home or a bustling celebration downtown, I bring an eye for detail and a calming presence that helps people feel at ease in front of the camera. My goal is always to create a comfortable experience that results in genuine, beautiful photos.
+          I got into photography through my travels, and it really took hold while exploring the Peruvian Amazon. The wildlife and scenery made me realize how quickly moments can pass — and how powerful it is to capture them before they’re gone. That’s what Lost Light means to me: preserving moments that might otherwise fade away.
         </p>
         <p>
-          When I’m not behind the camera, I’m usually exploring the city, chasing golden hour light, or experimenting with film. Photography is more than just a job—it’s how I connect with people and preserve what matters most.
+          I’m a self-taught photographer with a background in travel and candid photography. Over time, that’s grown into a passion for working with people — whether it’s families, individuals, pets, or events. My goal is always the same: to capture real moments, as they are.
+        </p>
+        <p>
+          I don’t stick to one specific style. I focus on finding what’s honest and meaningful in each shoot — whether it’s something soft and quiet, or spontaneous and full of energy. I offer a range of sessions and custom packages, and I’m always happy to adapt to your needs.
+        </p>
+        <p>
+          During our time together, I want you to feel comfortable, relaxed, and free to be yourself. No pressure — just real moments, thoughtfully captured.
         </p>
       </div>
 
