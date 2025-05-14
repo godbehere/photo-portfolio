@@ -51,9 +51,9 @@ export default function OutOfTownBookingForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-xl shadow max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold text-center">Out of Town Booking Request</h1>
+      <h1 className="text-2xl font-bold text-center">Custom or Out of Town Booking Request</h1>
       <p className="text-muted-foreground text-center">
-        For sessions outside of Toronto, please fill out the form below and I’ll get back to you shortly.
+        For sessions outside of Toronto, or for custom packages, please fill out the form below and I’ll get back to you shortly.
       </p>
 
       <Input name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required />

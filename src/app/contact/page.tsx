@@ -17,10 +17,10 @@ export default function ContactPage() {
         <p className="mt-2">
           For inquiries outside the city, please use the{" "}
           <a
-            href="/booking/out-of-town-request"
+            href="/booking/custom-request"
             className="text-blue-600 hover:underline"
           >
-            out-of-town booking request
+            custom booking request
           </a>
           .
         </p>

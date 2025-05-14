@@ -51,7 +51,8 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
               )}
             >
               <h3 className="text-lg font-semibold">{type.name}</h3>
-              <p className="text-sm text-gray-600">Starting @ ${type.hourlyRate * type.durations[0] / 60}</p>
+              <p className="text-sm text-gray-600">{type.durations.length === 1 ? `Price: $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}` : `Starting @ $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}`}</p>
+              {type.durations.length === 1 ? <p className="text-sm text-gray-600">Length: {type.durations[0] / 60} hours</p> : null}
               <p className="text-sm text-gray-600">{type.description}</p>
             </button>
           ))}
