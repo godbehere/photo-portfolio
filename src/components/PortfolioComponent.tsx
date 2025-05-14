@@ -27,7 +27,6 @@ export default function PortfolioGallery() {
       setImages(all);
       setCategories([...new Set(all.map((img) => img.category))]);
       setTags([...new Set(all.flatMap((img) => img.tags || []))]);
-      setVisibleCount(IMAGES_PER_PAGE);
 
       const catParam = searchParams.get("category");
       if (catParam) {
@@ -35,7 +34,11 @@ export default function PortfolioGallery() {
       }
     };
     load();
-  }, [searchParams, selectedCategory, selectedTags]);
+  }, [searchParams]);
+  
+  useEffect(() => {
+    setVisibleCount(IMAGES_PER_PAGE);
+  }, [selectedCategory, selectedTags]);
 
   const filtered = images.filter((img) => {
     const matchesCategory = selectedCategory ? img.category === selectedCategory : true;
