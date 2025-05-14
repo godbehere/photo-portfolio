@@ -12,7 +12,7 @@ export default function BookingPage() {
           I’m based in <strong>Toronto</strong> and offer shoots within the city — 
           For bookings outside of Toronto, please{" "}
           <a
-            href="/booking/out-of-town-request"
+            href="/booking/custom-request"
             className="underline text-primary hover:text-primary/80"
           >
             complete this form
@@ -48,8 +48,8 @@ export default function BookingPage() {
       <div className="mt-8 border border-yellow-400 bg-yellow-50 p-4 rounded-lg text-sm text-yellow-800">
         <p>
           Planning a shoot outside Toronto?{" "}
-          <Link href="/out-of-town-booking" className="underline font-medium hover:text-yellow-700">
-            Submit an out-of-town booking request.
+          <Link href="/booking/custom-request" className="underline font-medium hover:text-yellow-700">
+            Submit a custom booking request.
           </Link>
         </p>
       </div>

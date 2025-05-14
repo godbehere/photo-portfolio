@@ -51,7 +51,7 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
           <p>No available windows match the selected duration.</p>
           <p>
             Please select a different package or fill out the custom booking inquiry form{" "}
-            <Link className="underline text-primary hover:text-primary/80" href="/booking/out-of-town-request">
+            <Link className="underline text-primary hover:text-primary/80" href="/booking/custom-request">
               here
             </Link>
           </p>
