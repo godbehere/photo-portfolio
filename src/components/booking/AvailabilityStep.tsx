@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { logInfo } from "@/utils/logger";
+import Link from "next/link";
 
 type Props = {
   data: { duration: number; availabilityWindowId?: string };
@@ -27,7 +28,7 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
         const windowDuration =
           (window.endTime.toDate().getTime() - window.startTime.toDate().getTime()) / 1000 / 60; // in minutes
         return windowDuration >= data.duration;
-      });
+      }).filter((window) => window.startTime.toDate().getTime() > Date.now());
       setWindows(filtered);
       setLoading(false);
     };
@@ -46,11 +47,18 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
       {loading ? (
         <p>Loading...</p>
       ) : windows.length === 0 ? (
-        <p>No available windows match the selected duration.</p>
+        <div className="flex flex-col items-center justify-center text-center">
+          <p>No available windows match the selected duration.</p>
+          <p>
+            Please select a different package or fill out the custom booking inquiry form{" "}
+            <Link className="underline text-primary hover:text-primary/80" href="/booking/out-of-town-request">
+              here
+            </Link>
+          </p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {windows
-            .filter((window) => window.startTime.toDate().getTime() > Date.now())
             .sort((a, b) => a.startTime.toDate().getTime() - b.startTime.toDate().getTime())
             .map((window) => (
               <button

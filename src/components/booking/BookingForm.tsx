@@ -10,7 +10,6 @@ import { CheckCircle } from "lucide-react";
 import { createBooking } from "@/services/bookingService";
 import { toast } from "sonner";
 import StartTimeStep from "./StartTimeStep";
-import { SessionType } from "@/shared/types";
 
 export default function BookingForm() {
   const [step, setStep] = useState(0);
@@ -27,13 +26,7 @@ export default function BookingForm() {
     notes: "",
   });
 
-  const goNext = (sessionType: SessionType | null = null) => {
-      if (sessionType && step === 0 && sessionType.durations.length === 1) {
-        setStep((s) => s + 2); // skip duration step
-      } else {
-        setStep((s) => s + 1);
-      }
-  }
+  const goNext = () => setStep((s) => s + 1);
   const goBack = () => setStep((s) => s - 1);
 
 

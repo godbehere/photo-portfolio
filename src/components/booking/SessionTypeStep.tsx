@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllSessionTypes, getSessionTypeById } from "@/services/sessionTypes";
+import { getAllSessionTypes } from "@/services/sessionTypes";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SessionType } from "@/shared/types";
@@ -10,7 +10,7 @@ import { SessionType } from "@/shared/types";
 type Props = {
   data: { sessionTypeId: string };
   setData: (data: any) => void;
-  onNext: (session: SessionType) => void;
+  onNext: () => void;
 };
 
 export default function SessionTypeStep({ data, setData, onNext }: Props) {
@@ -28,11 +28,6 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
     };
     load();
   }, []);
-
-  const handleNext = async () => {
-    const session = await getSessionTypeById(data.sessionTypeId);
-    onNext(session);
-  }
 
   const handleSelect = (id: string | undefined) => {
     setData((prev: any) => ({ ...prev, sessionTypeId: id }));
@@ -66,7 +61,7 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
 
       <div className="mt-6 text-right">
         <Button
-          onClick={handleNext}
+          onClick={onNext}
           disabled={!data.sessionTypeId}
         >
           Next
