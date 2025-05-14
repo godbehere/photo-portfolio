@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 // import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'Largo Photography',
+  title: 'Lost Light Photography',
   description: 'Photography portfolio, booking, and shop',
 }
 

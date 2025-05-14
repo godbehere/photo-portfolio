@@ -14,6 +14,7 @@ export const sendContactUsEmail = functions.https.onCall<ContactFormData>(async 
             name: req.data.name,
             email: req.data.email,
             message: req.data.message,
+            subject: req.data.subject,
         }
     });
 

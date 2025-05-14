@@ -11,6 +11,7 @@ export type ContactFormData = {
     name: string;
     email: string;
     message: string;
+    subject: string;
 }
 
 export type OutOfTownRequestData = {
