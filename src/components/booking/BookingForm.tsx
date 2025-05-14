@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SessionTypeStep from "./SessionTypeStep";
 import DurationStep from "./DurationStep";
 import AvailabilityStep from "./AvailabilityStep";
@@ -10,10 +10,13 @@ import { CheckCircle } from "lucide-react";
 import { createBooking } from "@/services/bookingService";
 import { toast } from "sonner";
 import StartTimeStep from "./StartTimeStep";
+import { useSearchParams } from "next/navigation";
 
 export default function BookingForm() {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+
+  const searchParams = useSearchParams();
 
   const [formData, setFormData] = useState({
     sessionTypeId: "",
@@ -25,6 +28,13 @@ export default function BookingForm() {
     email: "",
     notes: "",
   });
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      sessionTypeId: searchParams.get("sessionType") || "",
+    }));
+  }, [searchParams]);
 
   const goNext = () => setStep((s) => s + 1);
   const goBack = () => setStep((s) => s - 1);

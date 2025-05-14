@@ -1,22 +1,7 @@
+import { getAllSessionTypes } from "@/services/sessionTypes";
 import Link from "next/link";
 
-const sessionTypes = [
-  {
-    name: "Mini Portrait Session",
-    price: "$150",
-    duration: "30 minutes",
-  },
-  {
-    name: "Full Session",
-    price: "$300",
-    duration: "1 hour",
-  },
-  {
-    name: "Event Coverage",
-    price: "Starting at $500",
-    duration: "Custom pricing",
-  },
-];
+const sessionTypes = (await getAllSessionTypes()).slice(0, 3);
 
 export default function BookingPreview() {
   return (
@@ -35,10 +20,10 @@ export default function BookingPreview() {
               key={session.name}
               className="border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition"
             >
-              <Link href="/booking">
-                <h3 className="text-xl font-bold mb-2">{session.name}</h3>
-                <p className="text-gray-700">{session.price}</p>
-                <p className="text-sm text-gray-500">{session.duration}</p>
+              <Link href={`/booking?sessionType=${session.id}`}>
+                <h3 className="text-lg font-semibold">{session.name}</h3>
+                <p className="text-sm text-gray-600">{session.durations.length === 1 ? `Price: $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}` : `Starting @ $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}`}</p>
+                {session.durations.length === 1 ? <p className="text-sm text-gray-600">Length: {session.durations[0] / 60} hours</p> : null}
               </Link>
             </div>
           ))}
