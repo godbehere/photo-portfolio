@@ -30,13 +30,16 @@ export default function BookingPreview() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {sessionTypes.map((session) => (
+            
             <div
               key={session.name}
               className="border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition"
             >
-              <h3 className="text-xl font-bold mb-2">{session.name}</h3>
-              <p className="text-gray-700">{session.price}</p>
-              <p className="text-sm text-gray-500">{session.duration}</p>
+              <Link href="/booking">
+                <h3 className="text-xl font-bold mb-2">{session.name}</h3>
+                <p className="text-gray-700">{session.price}</p>
+                <p className="text-sm text-gray-500">{session.duration}</p>
+              </Link>
             </div>
           ))}
         </div>
