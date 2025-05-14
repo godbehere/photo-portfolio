@@ -18,7 +18,7 @@ export default function AboutPage() {
       {/* Text Content */}
       <div className="space-y-6 text-lg text-muted-foreground">
         <p>
-          Hi, I’m [Your Name], a Toronto-based photographer with a passion for capturing people, moments, and emotion through the lens. My work focuses on lifestyle, portrait, and event photography—telling stories through honest, vibrant imagery.
+          Hi, I’m Grant Godbehere, a Toronto-based photographer with a passion for capturing people, moments, and emotion through the lens. My work focuses on lifestyle, portrait, and event photography—telling stories through honest, vibrant imagery.
         </p>
         <p>
           Whether I’m photographing a quiet moment at home or a bustling celebration downtown, I bring an eye for detail and a calming presence that helps people feel at ease in front of the camera. My goal is always to create a comfortable experience that results in genuine, beautiful photos.
