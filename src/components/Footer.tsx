@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Logo / Brand */}
         <div>
-          <h3 className="text-2xl font-bold mb-2">Largo Photography</h3>
+          <h3 className="text-2xl font-bold mb-2">Lost Light Photography</h3>
           <p className="text-gray-400 text-sm">
             Capturing life’s beautiful moments.
           </p>
@@ -42,7 +42,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-10 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} Largo Photography. All rights reserved.
+        © {new Date().getFullYear()} Lost Light Photography. All rights reserved.
       </div>
     </footer>
   );
