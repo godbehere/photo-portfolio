@@ -1,6 +1,7 @@
 import BookingForm from "@/components/booking/BookingForm";
 import { CalendarCheck, Mail, Clock } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function BookingPage() {
   return (
@@ -44,7 +45,9 @@ export default function BookingPage() {
       </div>
 
       {/* Booking Form */}
-      <BookingForm />
+      <Suspense>
+        <BookingForm />
+      </Suspense>
       <div className="mt-8 border border-yellow-400 bg-yellow-50 p-4 rounded-lg text-sm text-yellow-800">
         <p>
           Planning a shoot outside Toronto?{" "}
