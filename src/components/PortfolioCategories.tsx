@@ -10,7 +10,7 @@ type Category = {
     {
       title: "Pets",
       image: "/portfolio/pets.jpg",
-      href: "/portfolio#pets",
+      href: "/portfolio?category=Pets",
     },
     {
       title: "Portraits",

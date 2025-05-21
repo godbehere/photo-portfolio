@@ -39,20 +39,22 @@ export default function Header() {
                 <Aperture className="w-6 h-6" />
                 <span>Lost Light Photography</span>
             </Link>
+            <div className="px-4 py-4 flex justify-end space-x-4 items-center">
             <ModeToggle />
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex space-x-4">
-                {navLinks}
-            </nav>
+              {/* Desktop Nav */}
+              <nav className="hidden md:flex space-x-4">
+                  {navLinks}
+              </nav>
 
-            {/* Mobile Hamburger Button */}
-            <button
-                className="md:hidden p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800"
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
-            >
-                {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              {/* Mobile Hamburger Button */}
+              <button
+                  className="md:hidden p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800"
+                  onClick={toggleMenu}
+                  aria-label="Toggle menu"
+              >
+                  {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
         </div>
 
         {/* Mobile Dropdown */}
