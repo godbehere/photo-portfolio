@@ -13,11 +13,11 @@ export default async function SessionsPage() {
   if (!decoded.admin) return redirect('/unauthorized');
   
   return (
-    <main className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-6">
         {/* <PortfolioUploadForm /> */}
         <PortfolioBatchUploadInline />
       </div>
-    </main>
+    </div>
   );
 }
