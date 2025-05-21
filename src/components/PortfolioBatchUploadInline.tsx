@@ -117,7 +117,7 @@ export default function PortfolioBatchUploadInline() {
   };
 
   return (
-    <div className="space-y-4 max-w-4xl mx-auto p-4 bg-white shadow rounded">
+    <div className="space-y-4 max-w-4xl mx-auto p-4 bg-white shadow rounded dark:bg-gray-900 dark:text-white">
       <h2 className="text-2xl font-bold">Batch Portfolio Upload</h2>
 
       {/* Drag & Drop Zone */}
@@ -125,7 +125,7 @@ export default function PortfolioBatchUploadInline() {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onClick={handleClickSelectFiles}
-        className="border-2 border-dashed border-gray-400 p-6 rounded-md text-center cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+        className="border-2 border-dashed border-gray-400 p-6 rounded-md text-center cursor-pointer bg-gray-50 hover:bg-gray-100 transition dark:bg-gray-950 dark:text-white"
       >
         <p className="text-gray-600">Drag and drop images here, or click to select</p>
         <Input

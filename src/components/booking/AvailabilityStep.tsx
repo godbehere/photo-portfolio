@@ -35,9 +35,9 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
     load();
   }, [data.duration]);
 
-  const handleSelect = (id: string) => {
+  const handleSelect = (id: string, date: string) => {
     logInfo("Select Availability", "Test Message");
-    setData((prev: any) => ({ ...prev, availabilityWindowId: id }));
+    setData((prev: any) => ({ ...prev, availabilityWindowId: id, date }));
   };
 
   return (
@@ -63,7 +63,7 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
             .map((window) => (
               <button
                 key={window.id}
-                onClick={() => handleSelect(window.id!)}
+                onClick={() => handleSelect(window.id!, window.date)}
                 className={cn(
                   "p-4 rounded-lg border hover:border-black transition text-left",
                   data.availabilityWindowId === window.id ? "bg-black text-white" : "bg-white"

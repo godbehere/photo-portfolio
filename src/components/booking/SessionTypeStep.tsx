@@ -47,7 +47,7 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
               onClick={() => handleSelect(type.id)}
               className={cn(
                 "p-4 rounded-lg border hover:border-black transition",
-                data.sessionTypeId === type.id ? "bg-black text-white" : "bg-white"
+                data.sessionTypeId === type.id ? "bg-black text-white" : "dark:bg-gray-900 bg-white"
               )}
             >
               <h3 className="text-lg font-semibold">{type.name}</h3>

@@ -39,7 +39,7 @@ export default async function AdminDashboardPage() {
     if (!decoded.admin) return redirect('/unauthorized');
 
     return (
-      <main className="max-w-5xl mx-auto p-6 space-y-10">
+      <div className="max-w-5xl mx-auto p-6 space-y-10 dark:bg-gray-900 dark:text-white">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
 
         {/* Navigation */}
@@ -151,7 +151,7 @@ export default async function AdminDashboardPage() {
             </ul>
           )}
         </section>
-      </main>
+      </div>
     );
   } catch {
     return redirect('/login');

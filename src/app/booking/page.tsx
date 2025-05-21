@@ -1,10 +1,29 @@
 import BookingForm from "@/components/booking/BookingForm";
 import { CalendarCheck, Mail, Clock } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function BookingPage() {
   return (
     <div className="py-12 px-4 max-w-3xl mx-auto space-y-10">
+      {/* Booking Steps Summary (optional visual aid) */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        <div className="flex flex-col items-center">
+          <Clock className="text-primary" size={32} />
+          <p className="mt-2 font-medium">Select Session Type</p>
+          <p className="text-sm text-muted-foreground">Choose a session and duration.</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <CalendarCheck className="text-primary" size={32} />
+          <p className="mt-2 font-medium">Choose Date & Time</p>
+          <p className="text-sm text-muted-foreground">Pick a time that works best for you.</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <Mail className="text-primary" size={32} />
+          <p className="mt-2 font-medium">Receive Confirmation</p>
+          <p className="text-sm text-muted-foreground">We’ll email you to finalize your session.</p>
+        </div>
+      </div>
       {/* Overview Header */}
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Book Your Photography Session</h1>
@@ -24,27 +43,10 @@ export default function BookingPage() {
         </p>
       </div>
 
-      {/* Booking Steps Summary (optional visual aid) */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-        <div className="flex flex-col items-center">
-          <Clock className="text-primary" size={32} />
-          <p className="mt-2 font-medium">Select Session Type</p>
-          <p className="text-sm text-muted-foreground">Choose a session and duration.</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <CalendarCheck className="text-primary" size={32} />
-          <p className="mt-2 font-medium">Choose Date & Time</p>
-          <p className="text-sm text-muted-foreground">Pick a time that works best for you.</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <Mail className="text-primary" size={32} />
-          <p className="mt-2 font-medium">Receive Confirmation</p>
-          <p className="text-sm text-muted-foreground">We’ll email you to finalize your session.</p>
-        </div>
-      </div>
-
       {/* Booking Form */}
-      <BookingForm />
+      <Suspense>
+        <BookingForm />
+      </Suspense>
       <div className="mt-8 border border-yellow-400 bg-yellow-50 p-4 rounded-lg text-sm text-yellow-800">
         <p>
           Planning a shoot outside Toronto?{" "}

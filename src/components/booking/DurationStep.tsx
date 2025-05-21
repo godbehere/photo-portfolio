@@ -28,8 +28,8 @@ export default function DurationStep({ data, setData, onNext, onBack }: Props) {
     load();
   }, [data.sessionTypeId]);
 
-  const handleSelect = (duration: number) => {
-    setData((prev: any) => ({ ...prev, duration }));
+  const handleSelect = (duration: number, total: number) => {
+    setData((prev: any) => ({ ...prev, duration, total }));
   };
 
   return (
@@ -43,7 +43,7 @@ export default function DurationStep({ data, setData, onNext, onBack }: Props) {
           {sessionType.durations.map((duration) => (
             <button
               key={duration}
-              onClick={() => handleSelect(duration)}
+              onClick={() => handleSelect(duration, sessionType.hourlyRate * duration / 60)}
               className={cn(
                 "p-4 rounded-lg border hover:border-black transition",
                 data.duration === duration ? "bg-black text-white" : "bg-white"

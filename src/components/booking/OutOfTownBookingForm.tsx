@@ -50,7 +50,7 @@ export default function OutOfTownBookingForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-xl shadow max-w-xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-xl shadow max-w-xl mx-auto dark:bg-gray-900 dark:text-white">
       <h1 className="text-2xl font-bold text-center">Custom or Out of Town Booking Request</h1>
       <p className="text-muted-foreground text-center">
         For sessions outside of Toronto, or for custom packages, please fill out the form below and I’ll get back to you shortly.
