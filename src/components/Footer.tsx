@@ -28,7 +28,7 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-semibold mb-4">Connect</h4>
           <div className="flex justify-center md:justify-start space-x-4 text-xl">
-            <a href="https://www.instagram.com/lrgophotos/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/lost.light.photos/" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="hover:text-gray-300" />
             </a>
             <a href="https://www.facebook.com/profile.php?id=100088354189661" target="_blank" rel="noopener noreferrer">
