@@ -74,20 +74,25 @@ export default function PortfolioGallery() {
       </div>
 
       <div className="mb-6">
-        <label className="block mb-1 font-semibold">Tags</label>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <Button
-              key={tag}
-              size="sm"
-              variant={selectedTags.includes(tag) ? "default" : "outline"}
-              onClick={() => toggleTag(tag)}
-            >
-              {tag}
-            </Button>
-          ))}
-        </div>
-      </div>
+  <label className="block mb-1 font-semibold">Tags</label>
+  <div className="flex gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide py-1">
+    {tags.map((tag) => (
+      <button
+        key={tag}
+        onClick={() => toggleTag(tag)}
+        className={`text-sm px-3 py-1 rounded-full border transition-colors flex-shrink-0
+          ${
+            selectedTags.includes(tag)
+              ? 'bg-black text-white dark:bg-white dark:text-black'
+              : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
+          } hover:bg-opacity-80`}
+      >
+        {tag}
+      </button>
+    ))}
+  </div>
+</div>
+
 
       {filtered.length === 0 ? (
         <p className="text-muted-foreground text-center my-8">
