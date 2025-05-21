@@ -66,7 +66,7 @@ export default function AvailabilityStep({ data, setData, onNext, onBack }: Prop
                 onClick={() => handleSelect(window.id!, window.date)}
                 className={cn(
                   "p-4 rounded-lg border hover:border-black transition text-left",
-                  data.availabilityWindowId === window.id ? "bg-black text-white" : "bg-white"
+                  data.availabilityWindowId === window.id ? "bg-black text-white" : "bg-white dark:bg-gray-900 dark:text-white"
                 )}
               >
                 <p className="font-medium">

@@ -87,7 +87,7 @@ export default function BookingForm() {
       </div>
 
       {step < 5 && step > 0 && (
-        <div className="bg-white shadow rounded-xl p-4 h-fit">
+        <div className="bg-white shadow rounded-xl p-4 h-fit dark:bg-gray-900 dark:text-white">
           <BookingSummary data={formData} />
         </div>
       )}

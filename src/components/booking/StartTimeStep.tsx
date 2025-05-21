@@ -66,7 +66,7 @@ export default function StartTimeStep({ data, setData, onNext, onBack }: Props) 
                 "p-3 rounded-md border hover:border-black transition",
                 data.startTime === option.toISOString()
                   ? "bg-black text-white"
-                  : "bg-white"
+                  : "bg-white dark:bg-gray-900 dark:text-white"
               )}
             >
               {format(option, "h:mm a")}

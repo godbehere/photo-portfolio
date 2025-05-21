@@ -46,7 +46,7 @@ export default function DurationStep({ data, setData, onNext, onBack }: Props) {
               onClick={() => handleSelect(duration, sessionType.hourlyRate * duration / 60)}
               className={cn(
                 "p-4 rounded-lg border hover:border-black transition",
-                data.duration === duration ? "bg-black text-white" : "bg-white"
+                data.duration === duration ? "bg-black text-white" : "bg-white dark:bg-gray-900 dark:text-white"
               )}
             >
               <h3 className="text-lg font-semibold">{duration > 60 ? `${duration / 60} hours`:`${duration} minutes`}</h3>
