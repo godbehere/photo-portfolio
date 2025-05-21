@@ -6,25 +6,6 @@ import { Suspense } from "react";
 export default function BookingPage() {
   return (
     <div className="py-12 px-4 max-w-3xl mx-auto space-y-10">
-      {/* Overview Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">Book Your Photography Session</h1>
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          I’m based in <strong>Toronto</strong> and offer shoots within the city — 
-          For bookings outside of Toronto, please{" "}
-          <a
-            href="/booking/custom-request"
-            className="underline text-primary hover:text-primary/80"
-          >
-            complete this form
-          </a>{" "}
-          instead.
-        </p>
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Select your preferred session type, duration, and availability. Once you request a slot, we’ll reach out to confirm the details via email.
-        </p>
-      </div>
-
       {/* Booking Steps Summary (optional visual aid) */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
         <div className="flex flex-col items-center">
@@ -42,6 +23,24 @@ export default function BookingPage() {
           <p className="mt-2 font-medium">Receive Confirmation</p>
           <p className="text-sm text-muted-foreground">We’ll email you to finalize your session.</p>
         </div>
+      </div>
+      {/* Overview Header */}
+      <div className="text-center space-y-4">
+        <h1 className="text-4xl font-bold">Book Your Photography Session</h1>
+        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+          I’m based in <strong>Toronto</strong> and offer shoots within the city — 
+          For bookings outside of Toronto, please{" "}
+          <a
+            href="/booking/custom-request"
+            className="underline text-primary hover:text-primary/80"
+          >
+            complete this form
+          </a>{" "}
+          instead.
+        </p>
+        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+          Select your preferred session type, duration, and availability. Once you request a slot, we’ll reach out to confirm the details via email.
+        </p>
       </div>
 
       {/* Booking Form */}
