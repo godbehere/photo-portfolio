@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { SessionType } from "@/shared/types";
+import { Textarea } from "./ui/textarea";
 
 interface Props {
   onSuccess: () => void;
@@ -15,7 +16,9 @@ interface Props {
 
 export default function SessionTypeForm({ onSuccess, initialData }: Props) {
   const [name, setName] = useState(initialData?.name ?? "");
-  const [description, setDescription] = useState(initialData?.description ?? "");
+  const [shortDescription, setShortDescription] = useState(initialData?.shortDescription ?? "");
+  const [longDescription, setLongDescription] = useState(initialData?.longDescription ?? "");
+  const [includes, setIncludes] = useState(initialData?.includes?.join(", ") ?? "");
   const [durations, setDurations] = useState(initialData?.durations?.join(", ") ?? "");
   const [hourlyRate, setHourlyRate] = useState(initialData?.hourlyRate?.toString() ?? "");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,7 +27,9 @@ export default function SessionTypeForm({ onSuccess, initialData }: Props) {
     setIsSubmitting(true);
     const sessionType: Omit<SessionType, "id"> = {
       name,
-      description,
+      shortDescription,
+      longDescription,
+      includes: includes.split(";").map(i => i.trim()),
       durations: durations.split(",").map(d => parseInt(d.trim(), 10)),
       hourlyRate: parseFloat(hourlyRate),
       isActive: true,
@@ -54,8 +59,16 @@ export default function SessionTypeForm({ onSuccess, initialData }: Props) {
         <Input value={name} onChange={(e) => setName(e.target.value)} />
       </div>
       <div>
-        <Label>Description</Label>
-        <Input value={description} onChange={(e) => setDescription(e.target.value)} />
+        <Label>Short Description</Label>
+        <Input value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} />
+      </div>
+      <div>
+        <Label>Long Description</Label>
+        <Textarea value={longDescription} onChange={(e) => setLongDescription(e.target.value)} />
+      </div>
+      <div>
+        <Label>Includes (comma-separated in minutes)</Label>
+        <Input value={includes} onChange={(e) => setIncludes(e.target.value)} />
       </div>
       <div>
         <Label>Durations (comma-separated in minutes)</Label>

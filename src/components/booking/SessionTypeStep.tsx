@@ -40,20 +40,26 @@ export default function SessionTypeStep({ data, setData, onNext }: Props) {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
           {sessionTypes.map((type) => (
             <button
               key={type.id}
               onClick={() => handleSelect(type.id)}
               className={cn(
-                "p-4 rounded-lg border hover:border-black transition",
-                data.sessionTypeId === type.id ? "bg-black text-white" : "dark:bg-gray-900 bg-white"
+                "p-4 rounded-lg border hover:border-black text-left transition",
+                data.sessionTypeId === type.id ? "bg-black text-white" : "dark:bg-gray-900 bg-white text-gray-600 dark:text-gray-300"
               )}
             >
               <h3 className="text-lg font-semibold">{type.name}</h3>
-              <p className="text-sm text-gray-600">{type.durations.length === 1 ? `Price: $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}` : `Starting @ $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}`}</p>
-              {type.durations.length === 1 ? <p className="text-sm text-gray-600">Length: {type.durations[0] / 60} hours</p> : null}
-              <p className="text-sm text-gray-600">{type.description}</p>
+              <p className="text-sm">{type.durations.length === 1 ? `Price: $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}` : `Starting @ $${(type.hourlyRate * type.durations[0] / 60).toFixed(2)}`}</p>
+              {type.durations.length === 1 ? <p className="text-sm">Length: {type.durations[0] / 60} hours</p> : null}
+              <p className="text-sm"><em>{type.shortDescription}</em></p>
+              <p className="text-sm">{type.longDescription}</p>
+              {type.includes ? type.includes.map((include) => (
+                <p key={include} className="text-sm">
+                  - {include}
+                </p>
+              )) : null}
             </button>
           ))}
         </div>

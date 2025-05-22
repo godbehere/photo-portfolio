@@ -35,7 +35,9 @@ export type CreateBookingData = {
 export type SessionType = {
     id?: string;
     name: string;
-    description?: string;
+    shortDescription: string;
+    longDescription?: string;
+    includes: string[];
     durations: number[];
     hourlyRate: number;
     isActive?: boolean;
