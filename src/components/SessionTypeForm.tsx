@@ -18,7 +18,7 @@ export default function SessionTypeForm({ onSuccess, initialData }: Props) {
   const [name, setName] = useState(initialData?.name ?? "");
   const [shortDescription, setShortDescription] = useState(initialData?.shortDescription ?? "");
   const [longDescription, setLongDescription] = useState(initialData?.longDescription ?? "");
-  const [includes, setIncludes] = useState(initialData?.includes?.join(", ") ?? "");
+  const [includes, setIncludes] = useState(initialData?.includes?.join("; ") ?? "");
   const [durations, setDurations] = useState(initialData?.durations?.join(", ") ?? "");
   const [hourlyRate, setHourlyRate] = useState(initialData?.hourlyRate?.toString() ?? "");
   const [isSubmitting, setIsSubmitting] = useState(false);

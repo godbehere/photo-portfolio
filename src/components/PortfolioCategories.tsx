@@ -10,17 +10,17 @@ type Category = {
     {
       title: "Pets",
       image: "/portfolio/pets.jpg",
-      href: "/portfolio?category=Pets",
+      href: "/portfolio?tags=pets",
     },
     {
       title: "Portraits",
       image: "/portfolio/portraits.jpg",
-      href: "/portfolio?category=Portraits",
+      href: "/portfolio?tags=portraits",
     },
     {
       title: "Landscapes",
       image: "/portfolio/landscapes.jpg",
-      href: "/portfolio?category=Landscapes",
+      href: "/portfolio?tags=landscapes",
     },
   ];
   
