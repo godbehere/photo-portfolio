@@ -8,7 +8,10 @@ export const sendContactUsEmail = functions.https.onCall<ContactFormData>(async 
 
     await sgMail.send({
         to: process.env.LARGO_EMAIL,
-        from: 'photography@godbehere.org',
+        from: {
+            email: 'info@lostlight.ca',
+            name: 'Lost Light Photography',
+        },
         templateId: process.env.CONTACT_EMAIL_TEMPLATE!,
         dynamicTemplateData: {
             name: req.data.name,
@@ -25,7 +28,10 @@ export const sendOutOfTownRequestEmail = functions.https.onCall<OutOfTownRequest
 
     await sgMail.send({
         to: process.env.LARGO_EMAIL,
-        from: 'photography@godbehere.org',
+        from: {
+            email: 'booking@lostlight.ca',
+            name: 'Lost Light Booking',
+        },
         templateId: process.env.OOT_EMAIL_TEMPLATE!,
         dynamicTemplateData: {
             name: req.data.name,
@@ -46,7 +52,10 @@ export const sendConfirmationEmail = functions.https.onCall<CreateBookingData>(a
 
     await sgMail.send({
         to: req.data.email,
-        from: 'photography@godbehere.org',
+        from: {
+            email: 'booking@lostlight.ca',
+            name: 'Lost Light Booking',
+        },
         templateId: process.env.BOOKING_CONFIRMATION_EMAIL_TEMPLATE!,
         dynamicTemplateData: {
             name: req.data.name,
@@ -58,7 +67,10 @@ export const sendConfirmationEmail = functions.https.onCall<CreateBookingData>(a
 
     await sgMail.send({
         to: process.env.LARGO_EMAIL,
-        from: 'photography@godbehere.org',
+        from: {
+            email: 'booking@lostlight.ca',
+            name: 'Lost Light Booking',
+        },
         subject: 'New Booking',
         text: `New booking from ${req.data.name} (${req.data.email}) on ${date} at ${startTime} for ${req.data.duration} minutes.\nNotes: ${req.data.notes}`,
         html: `<p><strong>New booking from ${req.data.name} (${req.data.email}) on ${date} at ${startTime} for ${req.data.duration} minutes.</strong></p><p>Notes: ${req.data.notes}</p>`,

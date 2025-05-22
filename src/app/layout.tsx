@@ -14,21 +14,25 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Header />
-          <main className="dark:bg-gray-900 dark:text-white">
+          
+          {/* Let main expand to fill available space */}
+          <main className="flex-grow dark:bg-gray-900 dark:text-white">
             {children}
             <Toaster position="top-right" richColors />
           </main>
+          
           <Footer />
         </ThemeProvider>
       </body>
     </html>
   )
 }
+
