@@ -8,8 +8,34 @@ import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Lost Light Photography',
-  description: 'Photography portfolio, booking, and shop',
-}
+  description: 'Photography portfolio, booking, and shop by Lost Light Photography.',
+  metadataBase: new URL('https://photography.lostlight.ca'),
+  openGraph: {
+    title: 'Lost Light Photography',
+    description: 'Photography portfolio, booking, and shop by Lost Light Photography.',
+    url: 'https://photography.lostlight.ca',
+    siteName: 'Lost Light Photography',
+    images: [
+      {
+        url: 'https://photography.lostlight.ca/images/landsend.png',
+        width: 1200,
+        height: 630,
+        alt: 'Lost Light Photography',
+      },
+    ],
+    locale: 'en_CA',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lost Light Photography',
+    description: 'Photography portfolio, booking, and shop by Lost Light Photography.',
+    images: ['https://photography.lostlight.ca/images/landsend.png'],
+    // site: '@yourTwitterHandle',
+    // creator: '@yourTwitterHandle',
+  },
+};
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
