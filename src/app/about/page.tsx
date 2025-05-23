@@ -1,4 +1,22 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: 'About | Lost Light Photography',
+  description: 'Learn more about the story and vision behind Lost Light Photography.',
+  openGraph: {
+    title: 'About | Lost Light Photography',
+    description: 'Learn more about the story and vision behind Lost Light Photography.',
+    url: 'https://photography.lostlight.ca/about',
+    images: ['https://photography.lostlight.ca/images/about-me1.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About | Lost Light Photography',
+    description: 'Learn more about the story and vision behind Lost Light Photography.',
+    images: ['https://photography.lostlight.ca/images/about-me1.jpg'],
+  },
+};
 
 export default function AboutPage() {
   return (

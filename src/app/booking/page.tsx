@@ -1,7 +1,25 @@
 import BookingForm from "@/components/booking/BookingForm";
 import { CalendarCheck, Mail, Clock } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: 'Book a Session | Lost Light Photography',
+  description: 'Schedule your next photography session with Lost Light Photography.',
+  openGraph: {
+    title: 'Book a Session | Lost Light Photography',
+    description: 'Schedule your next photography session with Lost Light Photography.',
+    url: 'https://photography.lostlight.ca/booking',
+    images: ['https://photography.lostlight.ca/images/landsend.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Book a Session | Lost Light Photography',
+    description: 'Schedule your next photography session with Lost Light Photography.',
+    images: ['https://photography.lostlight.ca/images/landsend.png'],
+  },
+};
 
 export default function BookingPage() {
   return (
