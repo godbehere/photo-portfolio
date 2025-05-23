@@ -11,7 +11,7 @@ export const metadata = {
     siteName: 'Lost Light Photography',
     images: [
       {
-        url: '/images/about-me1.jpg',
+        url: 'https://photography.lostlight.ca/images/landsend.png',
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Portfolio | Lost Light Photography',
     description: 'Explore a curated collection of professional photography.',
-    images: ['/images/about-me1.jpg'],
+    images: ['https://photography.lostlight.ca/images/landsend.png'],
   },
 };
 
