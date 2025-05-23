@@ -11,7 +11,7 @@ export const metadata = {
     siteName: 'Lost Light Photography',
     images: [
       {
-        url: 'https://firebasestorage.googleapis.com/v0/b/photo-portfolio-35e2d.firebasestorage.app/o/portfolio%2FLandscapes%2F47bfc114-febd-4791-903f-81d7975516de?alt=media&token=6b50df6d-8b3c-4461-a988-074a54b39c86',
+        url: '/images/about-me1.jpg',
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Portfolio | Lost Light Photography',
     description: 'Explore a curated collection of professional photography.',
-    images: ['https://firebasestorage.googleapis.com/v0/b/photo-portfolio-35e2d.firebasestorage.app/o/portfolio%2FLandscapes%2F47bfc114-febd-4791-903f-81d7975516de?alt=media&token=6b50df6d-8b3c-4461-a988-074a54b39c86'],
+    images: ['/images/about-me1.jpg'],
   },
 };
 
