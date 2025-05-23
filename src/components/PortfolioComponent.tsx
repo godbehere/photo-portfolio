@@ -37,9 +37,9 @@ export default function PortfolioGallery() {
       setCategories([...new Set(all.map((img) => img.category))]);
       setTags([...new Set(all.flatMap((img) => img.tags || []))]);
 
-      const catParam = searchParams.get("category");
+      const catParam = searchParams.get("tags");
       if (catParam) {
-        setSelectedCategory(catParam);
+        setSelectedTags([catParam]);
       }
     };
     load();
@@ -84,7 +84,7 @@ export default function PortfolioGallery() {
         <div className="rounded-md border bg-white dark:bg-gray-900 p-4 mb-6 space-y-4 shadow-sm">
           {/* Category Filter */}
           <div>
-            <label className="block mb-1 font-semibold">Category</label>
+            <label className="block mb-1 font-semibold">Album</label>
             <select
               className="w-full p-2 border rounded dark:bg-gray-800 dark:border-gray-700"
               value={selectedCategory ?? ""}

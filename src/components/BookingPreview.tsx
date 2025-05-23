@@ -8,7 +8,7 @@ export default function BookingPreview() {
     <section className="bg-white py-16 px-4 dark:bg-gray-900 dark:text-white">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-3xl font-semibold mb-4">Let’s Work Together</h2>
-        <p className="text-gray-600 mb-10">
+        <p className="text-gray-600 mb-10 dark:text-white">
           I offer personalized sessions for portraits, events, and special moments.
           Choose the session that’s right for you and book your spot today.
         </p>
@@ -22,8 +22,8 @@ export default function BookingPreview() {
             >
               <Link href={`/booking?sessionType=${session.id}`}>
                 <h3 className="text-lg font-semibold">{session.name}</h3>
-                <p className="text-sm text-gray-600">{session.durations.length === 1 ? `Price: $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}` : `Starting @ $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}`}</p>
-                {session.durations.length === 1 ? <p className="text-sm text-gray-600">Length: {session.durations[0] / 60} hours</p> : null}
+                <p className="text-sm text-gray-600 dark:text-white">{session.durations.length === 1 ? `Price: $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}` : `Starting @ $${(session.hourlyRate * session.durations[0] / 60).toFixed(2)}`}</p>
+                {session.durations.length === 1 ? <p className="text-sm text-gray-600 dark:text-white">Length: {session.durations[0] / 60} hours</p> : null}
               </Link>
             </div>
           ))}
