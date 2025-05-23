@@ -19,7 +19,7 @@ export default function Header() {
       <Link href="/booking" className="block px-4 py-2 hover:underline">
         Book
       </Link>
-      <Link href="/shop" className="block px-4 py-2 hover:underline">
+      <Link href="/shop" className="hidden px-4 py-2 hover:underline">
         Shop
       </Link>
       <Link href="/about" className="block px-4 py-2 hover:underline">
