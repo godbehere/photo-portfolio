@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="google-site-verification" content="C8iL7AIlAa7tTuI4JvwHDSl6qnTTKHVcfm6AX8Ih71g" />
+      </head>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider
           attribute="class"
