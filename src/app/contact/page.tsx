@@ -1,6 +1,22 @@
-// app/contact/page.tsx
-
 import { ContactForm } from "@/components/ContactForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Contact | Lost Light Photography',
+  description: 'Get in touch with Lost Light Photography for inquiries and bookings.',
+  openGraph: {
+    title: 'Contact | Lost Light Photography',
+    description: 'Get in touch with Lost Light Photography for inquiries and bookings.',
+    url: 'https://photography.lostlight.ca/contact',
+    images: ['https://photography.lostlight.ca/images/mushroom.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact | Lost Light Photography',
+    description: 'Get in touch with Lost Light Photography for inquiries and bookings.',
+    images: ['https://photography.lostlight.ca/images/mushroom.jpg'],
+  },
+};
 
 export default function ContactPage() {
   return (
